@@ -47,9 +47,22 @@ if ( !class_exists( 'MV_SLIDER' ) ) {
 
     // These constants will be reused over and over again throughout the project, such as the plugin path e.g. /home/www/your_site/wp-content/plugins/bps-lider/....
     public function define_constants() {
-        define('PB_SLIDER_PATH', plugin_dir_path( __FILE__ )); //ex: /home/www/your_site/wp-content/plugins/bps-lider/
-        define('PB_SLIDER_URL', plugin_dir_url( __FILE__ )); // ex: https://your_site/wp-content/plugins/bps-lider/
-        define('PB_SLIDER_VERSION', '1.0.0');
+        define('BP_SLIDER_PATH', plugin_dir_path( __FILE__ )); //ex: /home/www/your_site/wp-content/plugins/bps-lider/
+        define('BP_SLIDER_URL', plugin_dir_url( __FILE__ )); // ex: https://your_site/wp-content/plugins/bps-lider/
+        define('BP_SLIDER_VERSION', '1.0.0');
+    }
+
+    public static function activate() {
+        // flush_rewrite_rules(); -> Marcelo says this and the next line do the same thing, but he thinks the method below works better for some reason
+        update_option('rewrite_rules', '');
+    }
+
+    public static function deactivate() {
+        flush_rewrite_rules();
+    }
+
+    public static function uninstall() {
+
     }
 }
 
@@ -58,5 +71,9 @@ if ( !class_exists( 'MV_SLIDER' ) ) {
  * this is necessary in objected oriented programming
 */
 if( class_exists('BP_Slider')) {
+    register_activation_hook( __FILE__, array( 'BP_Slider', 'activate' ));
+    register_deactivation_hook( __FILE__, array( 'BP_Slider', 'deactivate' ));
+    register_uninstall_hook( __FILE__, array( 'BP_Slider', 'uninstall' ));
+
     $bp_slider = new BP_Slider();
 }
