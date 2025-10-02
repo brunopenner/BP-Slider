@@ -42,6 +42,10 @@ if ( !class_exists( 'BP_SLIDER' ) ) {
     class BP_Slider {
         function __construct() {
             $this->define_constants();
+
+            require_once(BP_SLIDER_PATH . 'post-types/class.bp-slider-cpt.php');
+            $BP_Slider_Post_Type = new BP_Slider_Post_Type();
+
         }
 
         // These constants will be reused over and over again throughout the project, such as the plugin path e.g. /home/www/your_site/wp-content/plugins/bps-lider/....
