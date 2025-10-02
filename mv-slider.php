@@ -29,7 +29,27 @@ You should have received a copy of the GNU General Public License
 along with BP Slider. If not, see {URI to Plugin License}.
 */
 
+//This line is to avoid people from accessing my plugin files directlty, such as the "silence is golden on index.php
 if ( ! defined( 'ABSPATH') ) {
     die('Get out of here.')
     exit;
+}
+
+/**
+ * This allows other developers to overwite this class entirely in the future
+ */
+if ( !class_exists( 'MV_SLIDER' ) ) {
+    class BP_Slider {
+        function __construct() {
+            
+        }
+    }
+}
+
+/** 
+ * Instantiating and calling the constructor
+ * this is necessary in objected oriented programming
+*/
+if( class_exists('BP_Slider')) {
+    $bp_slider = new BP_Slider();
 }
