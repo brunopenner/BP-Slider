@@ -31,38 +31,38 @@ along with BP Slider. If not, see {URI to Plugin License}.
 
 //This line is to avoid people from accessing my plugin files directlty, such as the "silence is golden on index.php
 if ( ! defined( 'ABSPATH') ) {
-    die('Get out of here.')
+    die('Get out of here.');
     exit;
 }
 
 /**
  * This allows other developers to overwite this class entirely in the future
  */
-if ( !class_exists( 'MV_SLIDER' ) ) {
+if ( !class_exists( 'BP_SLIDER' ) ) {
     class BP_Slider {
         function __construct() {
             $this->define_constants();
         }
-    }
 
-    // These constants will be reused over and over again throughout the project, such as the plugin path e.g. /home/www/your_site/wp-content/plugins/bps-lider/....
-    public function define_constants() {
-        define('BP_SLIDER_PATH', plugin_dir_path( __FILE__ )); //ex: /home/www/your_site/wp-content/plugins/bps-lider/
-        define('BP_SLIDER_URL', plugin_dir_url( __FILE__ )); // ex: https://your_site/wp-content/plugins/bps-lider/
-        define('BP_SLIDER_VERSION', '1.0.0');
-    }
+        // These constants will be reused over and over again throughout the project, such as the plugin path e.g. /home/www/your_site/wp-content/plugins/bps-lider/....
+        public function define_constants() {
+            define('BP_SLIDER_PATH', plugin_dir_path( __FILE__ )); //ex: /home/www/your_site/wp-content/plugins/bps-lider/
+            define('BP_SLIDER_URL', plugin_dir_url( __FILE__ )); // ex: https://your_site/wp-content/plugins/bps-lider/
+            define('BP_SLIDER_VERSION', '1.0.0');
+        }
 
-    public static function activate() {
-        // flush_rewrite_rules(); -> Marcelo says this and the next line do the same thing, but he thinks the method below works better for some reason
-        update_option('rewrite_rules', '');
-    }
+        public static function activate() {
+            // flush_rewrite_rules(); -> Marcelo says this and the next line do the same thing, but he thinks the method below works better for some reason
+            update_option('rewrite_rules', '');
+        }
 
-    public static function deactivate() {
-        flush_rewrite_rules();
-    }
+        public static function deactivate() {
+            flush_rewrite_rules();
+        }
 
-    public static function uninstall() {
+        public static function uninstall() {
 
+        }
     }
 }
 
