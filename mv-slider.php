@@ -41,8 +41,15 @@ if ( ! defined( 'ABSPATH') ) {
 if ( !class_exists( 'MV_SLIDER' ) ) {
     class BP_Slider {
         function __construct() {
-            
+            $this->define_constants();
         }
+    }
+
+    // These constants will be reused over and over again throughout the project, such as the plugin path e.g. /home/www/your_site/wp-content/plugins/bps-lider/....
+    public function define_constants() {
+        define('PB_SLIDER_PATH', plugin_dir_path( __FILE__ )); //ex: /home/www/your_site/wp-content/plugins/bps-lider/
+        define('PB_SLIDER_URL', plugin_dir_url( __FILE__ )); // ex: https://your_site/wp-content/plugins/bps-lider/
+        define('PB_SLIDER_VERSION', '1.0.0');
     }
 }
 
